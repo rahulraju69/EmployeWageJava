@@ -1,33 +1,62 @@
-public class EmployeWage{
+/**
+* Use case 1 
+*/
+public class EmployeWage {
+	
+	private static final int EMP_RATE_PER_HRS = 20;
+	private static final int NUM_OF_WORKING_DAYS = 20;
+	private static final int MAX_HRS_IN_MONTH = 100;
 
-        //Constant
-        public static final int IS_FULL_TIME=1;
-        public static final int IS_PART_TIME=2;
-        public static final int EMP_RATE_PER_HOUR=20;
-        public static final int NUMBER_OF_WORKINGDAYS=2;
+	public static void main(String[] args) {
+		calDailyEmpWage();
+	}
 
-        public static void main(String[] args){
-                //Local Variable
-                int emp_Hour=0;
-                int emp_Wages=0;
-                int totalEmployeWage=0;
-                for (int day=0; day<NUMBER_OF_WORKINGDAYS; day++ )
-                {
-                        int randomCheck=(int)(Math.random()*10)%3;
-                        switch(randomCheck){
-                                case IS_FULL_TIME:
-                                        emp_Hour=8;
-                                        break;
-                                case IS_PART_TIME:
-                                        emp_Hour=4;
-                                        break;
-                                default:
-                                        emp_Hour=0;
-                        }
-                        emp_Wages=emp_Hour*EMP_RATE_PER_HOUR;
-                        totalEmployeWage += emp_Wages;
-                        System.out.println("Employee Wages : "+ emp_Wages);
-                }
-                System.out.println("Total Wages : " + totalEmployeWage);
-        }
+	/**
+	 * calculate employee daily wages based on type of employee 
+	 */
+	public static void calDailyEmpWage() {
+		int totalWage = 0;
+		int totalEmpHrs = 0;
+		int totalWorkingDays = 0;
+		while(totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
+			totalWorkingDays++;
+
+			final int empHrs = getEmpHrs();
+			final int empWage = empHrs*EMP_RATE_PER_HRS;
+			totalEmpHrs+=empHrs;
+			totalWage+=empWage;
+			System.out.println("Emp DAY : "+totalWorkingDays+" wages : "+empWage);
+		}
+		System.out.println("Total emp wage : "+ totalWage);
+	}
+
+	/**
+	 * Get employee hours. 
+	 * @return employee hrs
+	 */
+	public static int getEmpHrs() {
+
+		final int isFullTime = 1;
+		final int isPartTime = 2;
+		int empHrs = 0;
+
+		//get random value
+		final double randomValue = Math.floor(Math.random()*10)%3;
+
+		switch((int)randomValue) {
+
+			case isFullTime:
+				empHrs = 8;
+				System.out.println("Emp is present for full time.");
+				break;
+			case isPartTime:
+				empHrs = 4;
+				System.out.println("Emp is present for part time.");
+				break;
+			default:
+				System.out.println("Emp is absent");
+				break;
+		}
+		return empHrs;
+	}
 }
