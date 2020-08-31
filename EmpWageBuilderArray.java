@@ -28,7 +28,7 @@ class CompanyEmpWage {
    }
 }
 
-public class EmployeWage implements  IComputeEmpWage {
+public class EmpWageBuilderArray implements  IComputeEmpWage {
 	//Constans
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
@@ -36,7 +36,7 @@ public class EmployeWage implements  IComputeEmpWage {
 	private int numOfCompany = 0;
 	private CompanyEmpWage[] companyEmpWageArray;
 
-	public EmployeWage() {
+	public EmpWageBuilderArray() {
 		companyEmpWageArray = new CompanyEmpWage[5];
 	}
 
@@ -78,8 +78,8 @@ public class EmployeWage implements  IComputeEmpWage {
 
 	public static void main(String[] args) {
 		EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
-		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
-		empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 50);
+		empWageBuilder.addCompanyEmpWage("airtel", 20, 20, 100);
+		empWageBuilder.addCompanyEmpWage("jio", 10, 4, 50);
 		empWageBuilder.computeEmpWage();
 	}
 }
